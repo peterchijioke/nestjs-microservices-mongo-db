@@ -4,7 +4,22 @@ services:
     build: .
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules # Ensures node_modules is not overwritten
+      - /usr/src/app/node_modules
     ports:
       - '3000:3000'
+    environment:
+      - DATABASE_URL=mongodb://mongo-main:27017/studentDB # Referencing the mongo-main container
     command: pnpm run start:dev
+    depends_on:
+      - mongo-main
+
+  mongo-main:
+    image: mongo:latest
+    container_name: mongo-main
+    ports:
+      - '27018:27017' # Host port 27018 mapped to container port 27017
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
