@@ -12,14 +12,16 @@ export class StudentController {
     try {
       const newStudent = await this.studentService.createStudent(createStudentDto);
       return response.status(HttpStatus.CREATED).json({
-        message:"Student has successfully been created",data:newStudent,
+        message:"Student has successfully been created",
+        data:newStudent,
       })
 
     } catch (error) {
       return response.status(HttpStatus.BAD_REQUEST).json({
         message:'Error: Student not created',
-        error:'Bad Request',
-        statusCode:HttpStatus.BAD_REQUEST
+        error:error,
+        statusCode:HttpStatus.BAD_REQUEST,
+        
       })
     }
   }
@@ -28,7 +30,7 @@ export class StudentController {
     try {
     const students = await this.studentService.getAllStudent()
     return response.status(HttpStatus.OK).json({
-      message:'All student data retrieved successfully'
+      message:'All student data retrieved successfully',data:students
     })
     } catch (error) {
       return response.status(error.status).json(error.response)

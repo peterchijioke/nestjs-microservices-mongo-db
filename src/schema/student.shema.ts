@@ -11,9 +11,9 @@ export class Student {
   @Prop()
   roleNumber:number;
   @Prop()
-  class:string;
+  class:number;
   @Prop()
-  gender:number;
+  gender:string;
   @Prop()
   marks:number;
 }

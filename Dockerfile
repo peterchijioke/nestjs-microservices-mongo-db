@@ -14,11 +14,12 @@ COPY pnpm-lock.yaml ./
 # Install dependencies using pnpm
 RUN pnpm install
 
+
 # Copy the rest of the application code
 COPY . .
 
 # Expose the application port
 EXPOSE 3000
 
-# Start the application
-CMD ["pnpm", "start"]
+# Start the application in watch mode
+CMD ["pnpm", "start:dev"]

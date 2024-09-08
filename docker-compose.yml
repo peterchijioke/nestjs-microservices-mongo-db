@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules # Ensures node_modules is not overwritten
+    ports:
+      - '3000:3000'
+    command: pnpm run start:dev
