@@ -8,7 +8,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - DATABASE_URL=mongodb://mongo-main:27017/studentDB # Referencing the mongo-main container
+      - DATABASE_URL=mongodb://mongo-main:27017/studentDB # Reference MongoDB service
     command: pnpm run start:dev
     depends_on:
       - mongo-main
@@ -17,9 +17,8 @@ services:
     image: mongo:latest
     container_name: mongo-main
     ports:
-      - '27018:27017' # Host port 27018 mapped to container port 27017
+      - '27018:27017' # Map host port 27018 to container port 27017
     volumes:
       - mongo_data:/data/db
-
 volumes:
   mongo_data:
